@@ -1,0 +1,41 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev --port 7779",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "start": "nuxt start"
+  },
+  "devDependencies": {
+    "nuxt": "^3.0.0"
+  },
+  "dependencies": {
+    "@element-plus/theme-chalk": "^2.2.16",
+    "@headlessui/vue": "^1.7.4",
+    "@nuxtjs/tailwindcss": "^6.2.0",
+    "@prisma/client": "^4.9.0",
+    "@vee-validate/i18n": "^4.7.1",
+    "@vee-validate/rules": "^4.7.1",
+    "bcryptjs": "^2.4.3",
+    "clipboard-copy": "^4.0.1",
+    "date-fns": "^2.29.3",
+    "element-plus": "^2.2.19",
+    "firebase": "^9.15.0",
+    "firebase-admin": "^11.4.1",
+    "get-title-at-url": "^2.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "prisma": "^4.9.0",
+    "sass": "^1.57.1",
+    "uniqid": "^5.4.0",
+    "uuid": "^9.0.0",
+    "vee-validate": "^4.7.1",
+    "vue-gtag-next": "^1.14.0",
+    "yup": "^0.32.11",
+    "yup-locale-ja": "^0.1.3"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  }
+}

@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// --------------------------------------------------
+// Prisma settings
+// --------------------------------------------------
+generator client {
+  provider = "prisma-client-js"
+}
+
+// MySQLの場合
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// PostgreSQLの場合
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+// SQLiteの場合
+// datasource db {
+//   provider = "sqlite"
+//   url      = "file:./dev.db"
+// }
+
+// --------------------------------------------------
+// DB Models
+// --------------------------------------------------
+model users {
+  id Int @id @default(autoincrement())
+  uid String @unique @db.VarChar(255)
+  email String @unique
+  displayName String? @db.VarChar(255)
+  description String? @db.Text
+  token String? @db.Text
+  favorite Json?
+  mytodo_id todo[]
+  mysubtodo_id subtodo[]
+  created_at DateTime @default(now()) @db.Timestamp(0)
+  updated_at DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+model todo {
+  id Int @id @default(autoincrement())
+  uid String @db.VarChar(255)
+  title String @db.VarChar(255)
+  description String? @db.Text
+  orner_id_more users? @relation(fields: [orner_id], references: [id])
+  orner_id Int?
+  subtodo_id subtodo[]
+  favorited Json?
+  created_at DateTime @default(now()) @db.Timestamp(0)
+  updated_at DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+
+
+model subtodo {
+  id Int @id @default(autoincrement())
+  uid String @db.VarChar(255)
+  title String @db.VarChar(255)
+  description String? @db.Text
+  todo_id_more todo? @relation(fields: [todo_id], references: [id])
+  todo_id Int?
+  orner_id_more users? @relation(fields: [orner_id], references: [id])
+  orner_id Int?
+  created_at DateTime @default(now()) @db.Timestamp(0)
+  updated_at DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
